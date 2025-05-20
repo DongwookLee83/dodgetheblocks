@@ -77,8 +77,13 @@ class Game {
     spawnBlock() {
         const now = Date.now();
         if (now - this.lastBlockSpawn > this.blockSpawnInterval) {
+            // 캐릭터 주변 범위 설정 (캔버스 너비의 60%)
+            const spawnRange = this.canvas.width * 0.6;
+            const minX = Math.max(0, this.player.x - spawnRange / 2);
+            const maxX = Math.min(this.canvas.width - 30, this.player.x + spawnRange / 2);
+            
             const block = {
-                x: Math.random() * (this.canvas.width - 30),
+                x: minX + Math.random() * (maxX - minX),
                 y: -30,
                 width: 30,
                 height: 30
