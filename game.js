@@ -18,7 +18,7 @@ class Game {
         this.score = 0;
         this.gameLoop = null;
         this.isGameOver = false;
-        this.blockSpeed = 3;
+        this.blockSpeed = 5;
         this.blockSpawnInterval = 1500;
         this.lastBlockSpawn = 0;
         
@@ -64,7 +64,7 @@ class Game {
         this.blocks = [];
         this.score = 0;
         this.isGameOver = false;
-        this.blockSpeed = 3;
+        this.blockSpeed = 5;
         this.blockSpawnInterval = 1500;
         this.lastBlockSpawn = 0;
         this.scoreElement.textContent = '0';
@@ -82,11 +82,14 @@ class Game {
             const minX = Math.max(0, this.player.x - spawnRange / 2);
             const maxX = Math.min(this.canvas.width - 30, this.player.x + spawnRange / 2);
             
+            // 랜덤 블록 크기 설정 (20px ~ 40px)
+            const blockSize = 20 + Math.random() * 20;
+            
             const block = {
                 x: minX + Math.random() * (maxX - minX),
-                y: -30,
-                width: 30,
-                height: 30
+                y: -blockSize,
+                width: blockSize,
+                height: blockSize
             };
             this.blocks.push(block);
             this.lastBlockSpawn = now;
