@@ -18,7 +18,7 @@ class Game {
         this.score = 0;
         this.gameLoop = null;
         this.isGameOver = false;
-        this.blockSpeed = 5;
+        this.blockSpeed = 7;
         this.blockSpawnInterval = 1500;
         this.lastBlockSpawn = 0;
         
@@ -64,7 +64,7 @@ class Game {
         this.blocks = [];
         this.score = 0;
         this.isGameOver = false;
-        this.blockSpeed = 5;
+        this.blockSpeed = 7;
         this.blockSpawnInterval = 1500;
         this.lastBlockSpawn = 0;
         this.scoreElement.textContent = '0';
@@ -119,10 +119,10 @@ class Game {
                 this.score += 10;
                 this.scoreElement.textContent = this.score;
                 
-                // 난이도 증가
-                if (this.score % 100 === 0) {
-                    this.blockSpeed += 0.5;
-                    this.blockSpawnInterval = Math.max(500, this.blockSpawnInterval - 100);
+                // 난이도 증가 (50점마다 속도 증가, 더 급격한 증가)
+                if (this.score % 50 === 0) {
+                    this.blockSpeed += 1;
+                    this.blockSpawnInterval = Math.max(500, this.blockSpawnInterval - 150);
                 }
                 return false;
             }
